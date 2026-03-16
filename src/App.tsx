@@ -35,9 +35,9 @@ function ScrollToHash() {
         }
       }, 100);
     } else {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [location]);
+  }, [location.pathname, location.hash, location.key]);
 
   return null;
 }
@@ -96,6 +96,7 @@ export default function App({ config }: { config: any }) {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-primary-200 selection:text-primary-900">
+      <ScrollToHash />
       
       {/* ── Top Bar ── */}
       <div className="hidden md:flex justify-between items-center px-8 py-2 bg-slate-900 text-slate-300 text-sm z-50 relative">
@@ -118,7 +119,7 @@ export default function App({ config }: { config: any }) {
       <nav className={`sticky top-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg py-2' : 'bg-white/95 backdrop-blur-sm py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center space-x-2 cursor-pointer group">
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center space-x-2 cursor-pointer group">
               {config.logoUrl ? (
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
