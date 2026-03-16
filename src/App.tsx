@@ -49,10 +49,29 @@ export default function App({ config }: { config: any }) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false);
+
+  const [bottomOffset, setBottomOffset] = useState(0);
+
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+      // Show floating CTA after scrolling 400px (past hero section)
+      setShowFloatingCTA(window.scrollY > 400);
+
+      // Check if near bottom to avoid covering legal links
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollPos = window.scrollY + window.innerHeight;
+      const threshold = 120; // Distance from bottom to start moving up
+      
+      if (scrollHeight - scrollPos < threshold) {
+        setBottomOffset(threshold - (scrollHeight - scrollPos));
+      } else {
+        setBottomOffset(0);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -321,21 +340,32 @@ export default function App({ config }: { config: any }) {
       </footer>
 
       {/* ── FLOATING CONTACT BUTTON ── */}
-      <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-3">
-        <motion.a
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          href={"tel:" + config.phone.replace(/\s/g, "")}
-          className="relative flex items-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-6 py-4 rounded-full font-bold shadow-2xl transition-all group animate-notdienst cursor-pointer overflow-hidden"
-          aria-label="Jetzt anrufen"
-        >
-          <Phone size={22} className="relative z-10 group-hover:rotate-12 transition-transform" />
-          <span className="relative z-10 text-base">Jetzt unterstützen</span>
-          <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-        </motion.a>
-      </div>
+      <AnimatePresence>
+        {showFloatingCTA && (
+          <motion.div 
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ 
+              y: 0, 
+              opacity: 1,
+              bottom: `calc(${bottomOffset}px + 1.5rem)` 
+            }}
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed left-4 right-4 md:left-auto md:right-8 z-50 flex justify-center"
+          >
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              href={"tel:" + config.phone.replace(/\s/g, "")}
+              className="w-full md:w-auto flex items-center justify-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl transition-all group cursor-pointer overflow-hidden border border-white/20"
+              aria-label="Jetzt anrufen"
+            >
+              <Phone size={22} className="relative z-10 group-hover:rotate-12 transition-transform" />
+              <span className="relative z-10 text-lg">Jetzt unterstützen</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
