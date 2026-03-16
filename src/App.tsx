@@ -49,13 +49,6 @@ export default function App({ config }: { config: any }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
@@ -84,11 +77,6 @@ export default function App({ config }: { config: any }) {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-primary-200 selection:text-primary-900">
-      {/* ── Scroll Progress Bar ── */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary-600 origin-left z-[60]"
-        style={{ scaleX }}
-      />
       
       {/* ── Top Bar ── */}
       <div className="hidden md:flex justify-between items-center px-8 py-2 bg-slate-900 text-slate-300 text-sm z-50 relative">

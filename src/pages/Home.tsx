@@ -237,104 +237,118 @@ export default function Home({ config }: { config: any }) {
   ];
 
   return (
-    <main className="w-full">
+    <motion.main 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="w-full"
+    >
 
         {/* ── 1. HERO ── */}
         <section id="startseite" className="relative min-h-[90vh] flex items-center pt-20 pb-32 lg:pt-32 lg:pb-40 overflow-hidden bg-white">
-          {/* Background Image with Seamless Blending */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Background Image with Seamless Blending and Centered Feeling */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <motion.div 
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="absolute right-0 top-0 w-full lg:w-4/5 h-full"
+              className="absolute lg:right-[-5%] xl:right-0 top-0 w-full lg:w-[85%] xl:w-[75%] h-full"
             >
-              <img 
-                src="/images/hero-bathroom.png" 
-                alt="Luxuriöses Badezimmer Design" 
-                className="w-full h-full object-cover object-right lg:object-center"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 50%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 50%)',
-                }}
-              />
-              {/* Additional overlays for depth and bottom blending */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent h-full w-full" />
+              <div className="relative w-full h-full mask-edges">
+                <img 
+                  src="/images/hero-bathroom.png" 
+                  alt="Luxuriöses Badezimmer Design" 
+                  className="w-full h-full object-cover object-right lg:object-center opacity-90"
+                  fetchPriority="high"
+                  loading="eager"
+                  style={{
+                    maskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 85%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 40%, black 85%, transparent 100%)',
+                  }}
+                />
+                {/* Refined overlays for depth and bottom/side blending */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent h-full w-full" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent h-full w-[20%]" />
+                <div className="absolute right-0 inset-y-0 bg-gradient-to-l from-white via-transparent to-transparent h-full w-[15%]" />
+              </div>
             </motion.div>
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div className="max-w-2xl">
-              <motion.div {...motionProps({ opacity: 0, x: -30 }, { opacity: 1, x: 0 }, { duration: 0.8 })}>
-                {config.foundingYear && (
-                  <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-bold tracking-wide mb-6 shadow-sm border border-primary-200">
-                    <Star size={14} fill="currentColor" /> MEISTERBETRIEB SEIT {config.foundingYear}
-                  </span>
-                )}
-                <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6 drop-shadow-sm">
-                  Mit uns wird Ihr{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
-                    Traumbad
-                  </span>{' '}
-                  Wirklichkeit.
-                </h1>
-                <div className="relative group/text lg:bg-transparent lg:backdrop-blur-0 mb-10">
-                  <div className="absolute -inset-4 bg-white/40 backdrop-blur-md rounded-3xl lg:hidden opacity-100 transition-opacity" />
-                  <div className="relative">
-                    <p className="text-xl text-slate-800 mb-4 leading-relaxed font-bold lg:font-semibold">
-                      Ihr Fachbetrieb für Haustechnik, auf die Sie sich verlassen können.
-                    </p>
-                    <p className="text-lg text-slate-700 leading-relaxed max-w-xl">
-                      Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir gestalten Lebensräume mit System und Leidenschaft.
-                    </p>
+            <div className="grid lg:grid-cols-5 items-center gap-12">
+              <div className="lg:col-span-3 max-w-2xl">
+                <motion.div {...motionProps({ opacity: 0, x: -30 }, { opacity: 1, x: 0 }, { duration: 0.8 })}>
+                  {config.foundingYear && (
+                    <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-bold tracking-wide mb-6 shadow-sm border border-primary-200">
+                      <Star size={14} fill="currentColor" /> MEISTERBETRIEB SEIT {config.foundingYear}
+                    </span>
+                  )}
+                  <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6 drop-shadow-sm">
+                    Mit uns wird Ihr{' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
+                      Traumbad
+                    </span>{' '}
+                    Wirklichkeit.
+                  </h1>
+                  <div className="relative group/text lg:bg-transparent lg:backdrop-blur-0 mb-10">
+                    <div className="absolute -inset-4 bg-white/40 backdrop-blur-md rounded-3xl lg:hidden opacity-100 transition-opacity" />
+                    <div className="relative">
+                      <p className="text-xl text-slate-800 mb-4 leading-relaxed font-bold lg:font-semibold">
+                        Ihr Fachbetrieb für Haustechnik, auf die Sie sich verlassen können.
+                      </p>
+                      <p className="text-lg text-slate-700 leading-relaxed max-w-xl">
+                        Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir gestalten Lebensräume mit System und Leidenschaft.
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex flex-col sm:flex-row gap-5">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => scrollToSection('kontakt')}
-                    className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-5 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:shadow-primary-500/20 flex items-center justify-center group cursor-pointer"
-                  >
-                    Kostenlose Beratung
-                    <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={22} />
-                  </motion.button>
-                  <motion.a
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    href={"tel:" + config.phone.replace(/\s/g, "")}
-                    className="bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center cursor-pointer"
-                  >
-                    <Phone className="mr-2 text-primary-600" size={20} />
-                    {config.phone}
-                  </motion.a>
-                </div>
+                  <div className="flex flex-col sm:flex-row gap-5">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => scrollToSection('kontakt')}
+                      className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-5 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:shadow-primary-500/20 flex items-center justify-center group cursor-pointer"
+                    >
+                      Kostenlose Beratung
+                      <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={22} />
+                    </motion.button>
+                    <motion.a
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      href={"tel:" + config.phone.replace(/\s/g, "")}
+                      className="bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center cursor-pointer"
+                    >
+                      <Phone className="mr-2 text-primary-600" size={20} />
+                      {config.phone}
+                    </motion.a>
+                  </div>
 
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-12 flex items-center gap-5 p-5 bg-white/60 backdrop-blur-md rounded-2xl border border-white/40 w-fit shadow-lg shadow-black/[0.03]"
-                >
-                  <div className="flex text-yellow-500">
-                    {[...Array(5)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.6 + i * 0.1, type: "spring" }}
-                      >
-                        <Star size={20} fill="currentColor" />
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900 leading-tight">Meisterbetrieb & Handschlagqualität</p>
-                    <p className="text-sm text-slate-600 font-medium">Ihr verlässlicher Partner in {config.serviceArea}</p>
-                  </div>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-12 flex items-center gap-5 p-5 bg-white/60 backdrop-blur-md rounded-2xl border border-white/40 w-fit shadow-lg shadow-black/[0.03]"
+                  >
+                    <div className="flex text-yellow-500">
+                      {[...Array(5)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.6 + i * 0.1, type: "spring" }}
+                        >
+                          <Star size={20} fill="currentColor" />
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-900 leading-tight">Meisterbetrieb & Handschlagqualität</p>
+                      <p className="text-sm text-slate-600 font-medium">Ihr verlässlicher Partner in {config.serviceArea}</p>
+                    </div>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              </div>
+              <div className="lg:col-span-2 hidden lg:block"></div>
             </div>
           </div>
         </section>
@@ -757,6 +771,6 @@ export default function Home({ config }: { config: any }) {
           </div>
         </section>
 
-      </main>
+      </motion.main>
   );
 }
