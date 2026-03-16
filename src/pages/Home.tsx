@@ -251,9 +251,11 @@ export default function Home({ config }: { config: any }) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-2xl">
               <motion.div {...motionProps({ opacity: 0, y: 30 }, { opacity: 1, y: 0 }, { duration: 0.6 })}>
-                <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold tracking-wide mb-6">
-                  <Star size={14} fill="currentColor" /> MEISTERBETRIEB SEIT 1987
-                </span>
+                {config.foundingYear && (
+                  <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold tracking-wide mb-6">
+                    <Star size={14} fill="currentColor" /> MEISTERBETRIEB SEIT {config.foundingYear}
+                  </span>
+                )}
                 <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6">
                   Mit uns wird Ihr{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
@@ -262,7 +264,8 @@ export default function Home({ config }: { config: any }) {
                   Wirklichkeit.
                 </h1>
                 <p className="text-xl text-slate-600 mb-4 leading-relaxed font-medium">
-                  Ihr Meisterbetrieb seit {config.foundingYear} —<br className="hidden sm:block" />
+                  {config.foundingYear ? `Ihr Meisterbetrieb seit ${config.foundingYear} —` : 'Ihr Meisterbetrieb —'}
+                  <br className="hidden sm:block" />
                   Haustechnik, auf die Sie sich verlassen können.
                 </p>
                 <p className="text-lg text-slate-500 mb-10 leading-relaxed">
@@ -401,7 +404,7 @@ export default function Home({ config }: { config: any }) {
                   Qualität, die man spürt — Vertrauen, das bleibt.
                 </h3>
                 <p className="text-slate-500 text-lg mb-10 leading-relaxed">
-                  Seit 1987 stehen wir dafür, dass jeder Auftrag so ausgeführt wird, als wäre es unser eigenes Zuhause. Keine Kompromisse, keine Überraschungen.
+                  {config.foundingYear ? `Seit ${config.foundingYear} stehen wir dafür, dass jeder Auftrag so ausgeführt wird, als wäre es unser eigenes Zuhause.` : 'Wir stehen dafür, dass jeder Auftrag so ausgeführt wird, als wäre es unser eigenes Zuhause.'} Keine Kompromisse, keine Überraschungen.
                 </p>
 
                 <div className="space-y-8">
@@ -439,7 +442,7 @@ export default function Home({ config }: { config: any }) {
                   <div className="space-y-4">
                     {[
                       '✓ Zertifizierter Sanitärbetrieb',
-                      '✓ Langjährige Erfahrung seit 2007',
+                      config.foundingYear ? `✓ Langjährige Erfahrung seit ${config.foundingYear}` : '✓ Langjährige Erfahrung & Kompetenz',
                       '✓ Schneller & kompetenter Service',
                       '✓ Transparente Preisgestaltung',
                     ].map((item, i) => (
