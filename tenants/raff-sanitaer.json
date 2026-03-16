@@ -1,0 +1,36 @@
+{
+  "name": "Raff Sanitär GmbH",
+  "shortName": "Raff",
+  "email": "kontakt@raff-sanitaer.de",
+  "phone": "0711 1234567",
+  "address": "Musterstraße 1, 70173 Stuttgart",
+  "emergencyPhone": "0711 98 76 590",
+  "googleRating": 4.9,
+  "googleReviewsCount": 183,
+  "foundingYear": "1987",
+  "primaryColor": "teal",
+  "secondaryColor": "amber",
+  "website": "raff-sanitaer.de",
+  "timeline": [
+    {
+      "year": "1987",
+      "title": "Die Gründung",
+      "description": "Heinrich Raff gründet den Betrieb in Stuttgart."
+    },
+    {
+      "year": "1995",
+      "title": "Meisterbetrieb",
+      "description": "Übernahme durch die nächste Generation und Erweiterung."
+    },
+    {
+      "year": "2008",
+      "title": "Modernisierung",
+      "description": "Fokus auf erneuerbare Energien."
+    },
+    {
+      "year": "2023",
+      "title": "Heute & Morgen",
+      "description": "Die dritte Generation führt das Unternehmen."
+    }
+  ]
+}

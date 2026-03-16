@@ -1,0 +1,31 @@
+{
+  "name": "Maurer Sanitär",
+  "shortName": "Maurer",
+  "email": "info@maurer-sanitaer.de",
+  "phone": "0711 7654321",
+  "address": "Hauptstraße 42, 70173 Stuttgart",
+  "emergencyPhone": "0711 7654322",
+  "googleRating": 4.8,
+  "googleReviewsCount": 250,
+  "foundingYear": "1992",
+  "primaryColor": "blue",
+  "secondaryColor": "orange",
+  "website": "maurer-sanitaer.de",
+  "timeline": [
+    {
+      "year": "1992",
+      "title": "Die Gründung",
+      "description": "Gründung des Betriebs."
+    },
+    {
+      "year": "2005",
+      "title": "Meisterbetrieb",
+      "description": "Wachstum und Spezialisierung."
+    },
+    {
+      "year": "2024",
+      "title": "Heute",
+      "description": "Innovativer Betrieb in Stuttgart."
+    }
+  ]
+}

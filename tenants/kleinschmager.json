@@ -1,0 +1,39 @@
+{
+  "name": "Kleinschmager Bad Heizung",
+  "shortName": "Kleinschmager",
+  "email": "info@kleinschmager.com",
+  "phone": "0711 3892515",
+  "address": "Pfizerstr. 5, 70184 Stuttgart",
+  "emergencyPhone": "01577 4071480",
+  "googleRating": 3.4,
+  "googleReviewsCount": 5,
+  "foundingYear": "2007",
+  "primaryColor": "orange",
+  "secondaryColor": "blue",
+  "logoUrl": "https://www.kleinschmager.com/images/logo/kleinschmager_logo_min.png",
+  "website": "kleinschmager.com",
+  "timeline": [
+    {
+      "year": "2007",
+      "title": "Gründung in Stuttgart",
+      "description": "Herr Jens Kleinschmager gründet in Stuttgart den Meisterbetrieb für Haustechnik mit dem Schwerpunkt Sanitär und Heizung."
+    },
+    {
+      "year": "2015",
+      "title": "Stetiges Wachstum",
+      "description": "Erweiterung des Teams und der Expertise, besonders in den Bereichen Badsanierung und energieeffiziente Heizungstechnik."
+    },
+    {
+      "year": "2024",
+      "title": "Heute",
+      "description": "Wir stehen für maßgeschneiderte Lösungen, Zuverlässigkeit und höchste Qualität in ganz Stuttgart."
+    }
+  ],
+  "serviceArea": "Stuttgart und Umgebung",
+  "companyDetails": {
+    "legalForm": "Einzelunternehmen",
+    "managingDirector": "Jens Kleinschmager",
+    "taxId": "DE257595924",
+    "registerCourt": "Amtsgericht Stuttgart"
+  }
+}
