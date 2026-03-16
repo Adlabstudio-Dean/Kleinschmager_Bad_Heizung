@@ -95,7 +95,7 @@ export default function App({ config }: { config: any }) {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-primary-200 selection:text-primary-900">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-primary-200 selection:text-primary-900 overflow-x-hidden">
       <ScrollToHash />
       
       {/* ── Top Bar ── */}
