@@ -6,7 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
-  const activeTenant = env.ACTIVE_TENANT || env.VITE_TENANT || 'maurer';
+  const activeTenant = env.ACTIVE_TENANT || env.VITE_TENANT || 'kleinschmager';
   
   const configPath = path.resolve(__dirname, `tenants/${activeTenant}.json`);
   let tenantConfig = {};
