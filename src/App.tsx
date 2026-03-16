@@ -204,7 +204,7 @@ export default function App({ config }: { config: any }) {
                 </div>
               )}
               <p className="max-w-sm mb-4">
-                Ihr Familienmeisterbetrieb seit {config.foundingYear}. Professionelle Sanitär- und Heizungslösungen für den Raum Stuttgart.
+                Professionelle Sanitär- und Heizungslösungen für den Raum Stuttgart. Ihr Partner für Qualität und Zuverlässigkeit im Handwerk.
               </p>
               <div className="flex gap-3 mt-4">
                 <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full bg-slate-800 hover:bg-primary-600 flex items-center justify-center text-slate-400 hover:text-white transition-colors">

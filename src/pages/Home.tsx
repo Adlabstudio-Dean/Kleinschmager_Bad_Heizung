@@ -264,9 +264,7 @@ export default function Home({ config }: { config: any }) {
                   Wirklichkeit.
                 </h1>
                 <p className="text-xl text-slate-600 mb-4 leading-relaxed font-medium">
-                  {config.foundingYear ? `Ihr Meisterbetrieb seit ${config.foundingYear} —` : 'Ihr Meisterbetrieb —'}
-                  <br className="hidden sm:block" />
-                  Haustechnik, auf die Sie sich verlassen können.
+                  Ihr Fachbetrieb für Haustechnik, auf die Sie sich verlassen können.
                 </p>
                 <p className="text-lg text-slate-500 mb-10 leading-relaxed">
                   Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir machen es richtig — beim ersten Mal.
@@ -404,7 +402,7 @@ export default function Home({ config }: { config: any }) {
                   Qualität, die man spürt — Vertrauen, das bleibt.
                 </h3>
                 <p className="text-slate-500 text-lg mb-10 leading-relaxed">
-                  {config.foundingYear ? `Seit ${config.foundingYear} stehen wir dafür, dass jeder Auftrag so ausgeführt wird, als wäre es unser eigenes Zuhause.` : 'Wir stehen dafür, dass jeder Auftrag so ausgeführt wird, als wäre es unser eigenes Zuhause.'} Keine Kompromisse, keine Überraschungen.
+                  Wir stehen dafür, dass jeder Auftrag so ausgeführt wird, als wäre es unser eigenes Zuhause. Keine Kompromisse, keine Überraschungen.
                 </p>
 
                 <div className="space-y-8">
@@ -442,7 +440,7 @@ export default function Home({ config }: { config: any }) {
                   <div className="space-y-4">
                     {[
                       '✓ Zertifizierter Sanitärbetrieb',
-                      config.foundingYear ? `✓ Langjährige Erfahrung seit ${config.foundingYear}` : '✓ Langjährige Erfahrung & Kompetenz',
+                      '✓ Langjährige Erfahrung & Kompetenz',
                       '✓ Schneller & kompetenter Service',
                       '✓ Transparente Preisgestaltung',
                     ].map((item, i) => (
