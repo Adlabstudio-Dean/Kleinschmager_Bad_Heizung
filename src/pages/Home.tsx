@@ -278,39 +278,62 @@ export default function Home({ config }: { config: any }) {
                   </span>{' '}
                   Wirklichkeit.
                 </h1>
-                <p className="text-xl text-slate-700 mb-4 leading-relaxed font-semibold">
-                  Ihr Fachbetrieb für Haustechnik, auf die Sie sich verlassen können.
-                </p>
-                <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
-                  Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir gestalten Lebensräume mit System und Leidenschaft.
-                </p>
+                <div className="relative group/text lg:bg-transparent lg:backdrop-blur-0 mb-10">
+                  <div className="absolute -inset-4 bg-white/40 backdrop-blur-md rounded-3xl lg:hidden opacity-100 transition-opacity" />
+                  <div className="relative">
+                    <p className="text-xl text-slate-800 mb-4 leading-relaxed font-bold lg:font-semibold">
+                      Ihr Fachbetrieb für Haustechnik, auf die Sie sich verlassen können.
+                    </p>
+                    <p className="text-lg text-slate-700 leading-relaxed max-w-xl">
+                      Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir gestalten Lebensräume mit System und Leidenschaft.
+                    </p>
+                  </div>
+                </div>
 
                 <div className="flex flex-col sm:flex-row gap-5">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection('kontakt')}
-                    className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group"
+                    className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-5 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:shadow-primary-500/20 flex items-center justify-center group cursor-pointer"
                   >
                     Kostenlose Beratung
                     <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={22} />
-                  </button>
-                  <a
+                  </motion.button>
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     href={"tel:" + config.phone.replace(/\s/g, "")}
-                    className="bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 border border-slate-200 px-10 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center"
+                    className="bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center cursor-pointer"
                   >
                     <Phone className="mr-2 text-primary-600" size={20} />
                     {config.phone}
-                  </a>
+                  </motion.a>
                 </div>
 
-                <div className="mt-12 flex items-center gap-5 p-4 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/20 w-fit">
-                  <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-12 flex items-center gap-5 p-5 bg-white/60 backdrop-blur-md rounded-2xl border border-white/40 w-fit shadow-lg shadow-black/[0.03]"
+                >
+                  <div className="flex text-yellow-500">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.6 + i * 0.1, type: "spring" }}
+                      >
+                        <Star size={20} fill="currentColor" />
+                      </motion.div>
+                    ))}
                   </div>
                   <div>
-                    <p className="font-bold text-slate-900">Exzellenter Service</p>
-                    <p className="text-sm text-slate-600 font-medium">Top-bewertet in der Region {config.serviceArea}</p>
+                    <p className="font-bold text-slate-900 leading-tight">Meisterbetrieb & Handschlagqualität</p>
+                    <p className="text-sm text-slate-600 font-medium">Ihr verlässlicher Partner in {config.serviceArea}</p>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -350,20 +373,24 @@ export default function Home({ config }: { config: any }) {
               {SERVICES.map((service, index) => (
                 <motion.div
                   key={index}
-                  {...whileInViewProps({ opacity: 0, y: 20 }, { opacity: 1, y: 0 }, { duration: 0.5, delay: prefersReducedMotion ? 0 : index * 0.08 })}
-                  className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-primary-100 transition-all group cursor-pointer"
+                  {...whileInViewProps({ opacity: 0, y: 30 }, { opacity: 1, y: 0 }, { duration: 0.6, delay: index * 0.1 })}
+                  whileHover={{ y: -8 }}
+                  className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-primary-600/5 transition-all group cursor-pointer relative overflow-hidden"
                 >
-                  <div className={`w-14 h-14 rounded-xl ${service.bgColor} ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <service.icon size={28} />
+                  <div className={`w-16 h-16 rounded-2xl ${service.bgColor} ${service.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                    <service.icon size={32} />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                  <p className="text-slate-600 leading-relaxed mb-5">{service.description}</p>
-                  <button
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+                  <p className="text-slate-600 leading-relaxed mb-6 h-20 overflow-hidden line-clamp-3">{service.description}</p>
+                  <div 
                     onClick={() => scrollToSection('kontakt')}
-                    className={`text-sm font-semibold ${service.color} hover:underline flex items-center gap-1`}
+                    className={`text-sm font-bold ${service.color} flex items-center gap-1 group/btn`}
                   >
-                    {service.cta}
-                  </button>
+                    <span className="relative overflow-hidden inline-block">
+                      {service.cta}
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-current transform translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-300" />
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -497,25 +524,26 @@ export default function Home({ config }: { config: any }) {
               <p className="text-slate-500">Echte Bewertungen von echten Kunden aus der Region Stuttgart.</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {TESTIMONIALS.map((t, index) => (
                 <motion.div
                   key={index}
-                  {...whileInViewProps({ opacity: 0, y: 20 }, { opacity: 1, y: 0 }, { duration: 0.5, delay: prefersReducedMotion ? 0 : index * 0.08 })}
-                  className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow"
+                  {...whileInViewProps({ opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1 }, { duration: 0.5, delay: index * 0.1 })}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-white p-10 rounded-3xl shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-black/5 transition-all duration-300 group"
                 >
-                  <div className="flex text-yellow-400 mb-4">
-                    {[...Array(t.rating)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+                  <div className="flex text-yellow-500 mb-6">
+                    {[...Array(t.rating)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
                   </div>
-                  <p className="text-slate-600 italic mb-6 leading-relaxed">"{t.text}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm">
+                  <p className="text-slate-700 italic mb-8 leading-relaxed text-lg font-medium">"{t.text}"</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white flex items-center justify-center font-bold text-lg shadow-lg">
                       {t.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-900">{t.name}</p>
-                      <p className="text-xs text-slate-400 flex items-center gap-1">
-                        <MapPin size={10} /> {t.location}
+                      <p className="font-bold text-slate-900">{t.name}</p>
+                      <p className="text-sm text-slate-400 font-medium flex items-center gap-1">
+                        <MapPin size={12} className="text-primary-500" /> {t.location}
                       </p>
                     </div>
                   </div>
@@ -573,22 +601,25 @@ export default function Home({ config }: { config: any }) {
               <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">In 3 Schritten zu Ihrem Wunschergebnis</h3>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 relative">
+            <div className="grid md:grid-cols-3 gap-12 relative">
               {/* Connector line (desktop) */}
-              <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-px bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200 z-0" style={{ left: '20%', right: '20%' }} />
+              <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-primary-100 via-primary-500 to-primary-100 z-0" style={{ left: '15%', right: '15%' }} />
 
               {JOURNEY_STEPS.map((step, i) => (
                 <motion.div
                   key={i}
-                  {...whileInViewProps({ opacity: 0, y: 20 }, { opacity: 1, y: 0 }, { duration: 0.5, delay: i * 0.15 })}
-                  className="relative z-10 text-center"
+                  {...whileInViewProps({ opacity: 0, y: 30 }, { opacity: 1, y: 0 }, { duration: 0.6, delay: i * 0.2 })}
+                  className="relative z-10 text-center group cursor-default"
                 >
-                  <div className="w-24 h-24 rounded-full bg-primary-50 border-4 border-primary-100 flex flex-col items-center justify-center mx-auto mb-6 group-hover:border-primary-400 transition-colors">
-                    <step.icon size={32} className="text-primary-600" />
-                  </div>
-                  <span className="text-5xl font-extrabold text-primary-100 absolute -top-3 left-1/2 -translate-x-1/2 select-none">{step.num}</span>
-                  <h4 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h4>
-                  <p className="text-slate-500 leading-relaxed">{step.desc}</p>
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-24 h-24 rounded-3xl bg-white border-2 border-primary-100 shadow-xl shadow-primary-500/5 flex flex-col items-center justify-center mx-auto mb-8 relative z-20 group-hover:border-primary-500 transition-colors duration-500"
+                  >
+                    <step.icon size={36} className="text-primary-600" />
+                  </motion.div>
+                  <span className="text-7xl font-black text-slate-100 absolute -top-10 left-1/2 -translate-x-1/2 select-none group-hover:text-primary-50 transition-colors duration-500">{step.num}</span>
+                  <h4 className="text-2xl font-bold text-slate-900 mb-4">{step.title}</h4>
+                  <p className="text-slate-500 leading-relaxed font-medium">{step.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -692,19 +723,32 @@ export default function Home({ config }: { config: any }) {
                       <textarea id="nachricht" rows={4} className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-primary-600 focus:border-transparent outline-none transition-all resize-none" placeholder="Beschreiben Sie Ihre Anfrage..." />
                     </div>
                     {formState === 'success' ? (
-                      <div role="alert" className="w-full bg-green-50 border border-green-200 text-green-800 font-semibold py-4 rounded-lg text-center flex items-center justify-center gap-2">
-                        <CheckCircle2 size={20} /> Vielen Dank! Wir melden uns innerhalb von 24 Stunden.
-                      </div>
+                      <motion.div 
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        role="alert" 
+                        className="w-full bg-green-50 border border-green-200 text-green-800 font-bold py-5 rounded-xl text-center flex items-center justify-center gap-3 shadow-sm shadow-green-200"
+                      >
+                        <CheckCircle2 size={24} className="text-green-600" /> 
+                        <span>Vielen Dank! Wir melden uns in Kürze.</span>
+                      </motion.div>
                     ) : (
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.98 }}
                         type="submit"
                         disabled={formState === 'loading'}
-                        className="w-full bg-secondary-500 hover:bg-secondary-600 disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-lg transition-colors shadow-md hover:shadow-lg mt-2 flex items-center justify-center gap-2"
+                        className="w-full bg-slate-900 hover:bg-slate-800 disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-5 rounded-xl transition-all shadow-xl hover:shadow-2xl mt-4 flex items-center justify-center gap-3 text-lg cursor-pointer group"
                       >
                         {formState === 'loading' ? (
                           <><span className="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" aria-hidden="true" /> Wird gesendet…</>
-                        ) : 'Anfrage senden →'}
-                      </button>
+                        ) : (
+                          <>
+                            Anfrage senden 
+                            <ChevronRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
+                      </motion.button>
                     )}
                   </form>
                 </div>
