@@ -361,7 +361,6 @@ export default function App({ config }: { config: any }) {
             >
               <Phone size={22} className="relative z-10 group-hover:rotate-12 transition-transform" />
               <span className="relative z-10 text-lg">Jetzt unterstützen</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </motion.a>
           </motion.div>
         )}
