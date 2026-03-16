@@ -240,60 +240,75 @@ export default function Home({ config }: { config: any }) {
     <main className="w-full">
 
         {/* ── 1. HERO ── */}
-        <section id="startseite" className="relative pt-20 pb-32 lg:pt-32 lg:pb-40 overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-slate-50 to-secondary-50/30" />
-            {/* Decorative blobs */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-100 rounded-full blur-[120px] opacity-40 translate-x-1/3 -translate-y-1/3" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary-100 rounded-full blur-[100px] opacity-30 -translate-x-1/4 translate-y-1/4" />
+        <section id="startseite" className="relative min-h-[90vh] flex items-center pt-20 pb-32 lg:pt-32 lg:pb-40 overflow-hidden bg-white">
+          {/* Background Image with Seamless Blending */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="absolute right-0 top-0 w-full lg:w-4/5 h-full"
+            >
+              <img 
+                src="/images/hero-bathroom.png" 
+                alt="Luxuriöses Badezimmer Design" 
+                className="w-full h-full object-cover object-right lg:object-center"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 50%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 50%)',
+                }}
+              />
+              {/* Additional overlays for depth and bottom blending */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent h-full w-full" />
+            </motion.div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div className="max-w-2xl">
-              <motion.div {...motionProps({ opacity: 0, y: 30 }, { opacity: 1, y: 0 }, { duration: 0.6 })}>
+              <motion.div {...motionProps({ opacity: 0, x: -30 }, { opacity: 1, x: 0 }, { duration: 0.8 })}>
                 {config.foundingYear && (
-                  <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-secondary-100 text-secondary-700 text-sm font-semibold tracking-wide mb-6">
+                  <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-bold tracking-wide mb-6 shadow-sm border border-primary-200">
                     <Star size={14} fill="currentColor" /> MEISTERBETRIEB SEIT {config.foundingYear}
                   </span>
                 )}
-                <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6">
+                <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6 drop-shadow-sm">
                   Mit uns wird Ihr{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
                     Traumbad
                   </span>{' '}
                   Wirklichkeit.
                 </h1>
-                <p className="text-xl text-slate-600 mb-4 leading-relaxed font-medium">
+                <p className="text-xl text-slate-700 mb-4 leading-relaxed font-semibold">
                   Ihr Fachbetrieb für Haustechnik, auf die Sie sich verlassen können.
                 </p>
-                <p className="text-lg text-slate-500 mb-10 leading-relaxed">
-                  Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir machen es richtig — beim ersten Mal.
+                <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+                  Schnelle, zuverlässige und professionelle Lösungen für Sanitär und Heizung in {config.serviceArea}. Wir gestalten Lebensräume mit System und Leidenschaft.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-5">
                   <button
                     onClick={() => scrollToSection('kontakt')}
-                    className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center group"
+                    className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group"
                   >
-                    Jetzt Termin vereinbaren
-                    <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                    Kostenlose Beratung
+                    <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={22} />
                   </button>
                   <a
                     href={"tel:" + config.phone.replace(/\s/g, "")}
-                    className="bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-sm flex items-center justify-center"
+                    className="bg-white/80 backdrop-blur-md hover:bg-white text-slate-900 border border-slate-200 px-10 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center"
                   >
                     <Phone className="mr-2 text-primary-600" size={20} />
                     {config.phone}
                   </a>
                 </div>
 
-                <div className="mt-10 flex items-center gap-4 text-sm text-slate-500 font-medium">
+                <div className="mt-12 flex items-center gap-5 p-4 bg-white/40 backdrop-blur-sm rounded-2xl border border-white/20 w-fit">
                   <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
+                    {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
                   </div>
                   <div>
-                    <p className="font-semibold text-slate-700">Zuverlässiger Meisterbetrieb</p>
-                    <p className="mt-0.5">Zahlreiche zufriedene Kunden in {config.serviceArea}</p>
+                    <p className="font-bold text-slate-900">Exzellenter Service</p>
+                    <p className="text-sm text-slate-600 font-medium">Top-bewertet in der Region {config.serviceArea}</p>
                   </div>
                 </div>
               </motion.div>
