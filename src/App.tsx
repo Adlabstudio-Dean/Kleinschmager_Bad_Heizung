@@ -358,10 +358,10 @@ export default function App({ config }: { config: any }) {
               whileTap={{ scale: 0.98 }}
               href={"tel:" + config.phone.replace(/\s/g, "")}
               className="w-full md:w-auto flex items-center justify-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl transition-all group cursor-pointer overflow-hidden border border-white/20"
-              aria-label="Jetzt anrufen"
+              aria-label="Angebot anfordern"
             >
               <Phone size={22} className="relative z-10 group-hover:rotate-12 transition-transform" />
-              <span className="relative z-10 text-lg">Jetzt unterstützen</span>
+              <span className="relative z-10 text-lg">Angebot anfordern</span>
             </motion.a>
           </motion.div>
         )}
